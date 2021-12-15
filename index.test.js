@@ -27,7 +27,6 @@ describe('[Exercise 2] trimPropertiesMutation', () => {
   const input = {name:'james'}
   const expected = {name:'james'}
   test('[3] returns an object with the properties trimmed', () => {
-
     expect(utils.trimPropertiesMutation(input)).toEqual(expected)
   })
   test('[4] the object returned is the exact same one we passed in', () => {
@@ -41,6 +40,10 @@ describe('[Exercise 2] trimPropertiesMutation', () => {
 
 describe('[Exercise 3] findLargestInteger', () => {
   // test('[5] returns the largest number in an array of objects { integer: 2 }', () => {})
+  const integers = [{integer:1, integer:2, integer:3}]
+  test('[5] returns the largest number in an array of objects { integer: 3 }', () => {
+  expect(utils.findLargestInteger(integers)).toBe(3)
+  })
 })
 
 
