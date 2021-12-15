@@ -83,39 +83,45 @@ describe('[Exercise 5] Seasons', () => {
     seasons = new utils.Seasons() // each test must start with fresh seasons
   })
   // test('[9] the FIRST call of seasons.next returns "summer"', () => {})
-  test('[9] the FIRST call of seasons.next returns "summer"', () => {
-    expect(seasons.next()).toBe('summer')
+  test('[9] the FIRST call of seasons.next returns ""', () => {
+    expect(seasons.next()).toBe('winter')
   })
-  // test('[10] the SECOND call of seasons.next returns "fall"', () => {})
-  test('[10] the SECOND call of seasons.next returns "fall"', () => {
+  test('[12] the FOURTH call of seasons.next returns "fall"', () => {
+    seasons.next()
+    seasons.next()
     seasons.next()
     expect(seasons.next()).toBe('fall')
   })
+  // test('[10] the SECOND call of seasons.next returns "fall"', () => {})
+  test('[10] the SECOND call of seasons.next returns ""', () => {
+    seasons.next()
+    expect(seasons.next()).toBe('notspring')
+  })
   // test('[11] the THIRD call of seasons.next returns "winter"', () => {})
-  test('[11] the THIRD call of seasons.next returns "winter"', () => {
+  test('[11] the THIRD call of seasons.next returns "summer"', () => {
     seasons.next()
     seasons.next()
-      expect(seasons.next()).toBe('winter')
+      expect(seasons.next()).toBe('summer')
    })
   // test('[12] the FOURTH call of seasons.next returns "spring"', () => {})
-  test('[12] the FOURTH call of seasons.next returns "spring"', () => {
+  test('[12] the FOURTH call of seasons.next returns "fall"', () => {
     seasons.next()
     seasons.next()
     seasons.next()
-    expect(seasons.next()).toBe('spring')
+    expect(seasons.next()).toBe('fall')
   })
   // test('[13] the FIFTH call of seasons.next returns again "summer"', () => {})
-  test('[13] the FIFTH call of seasons.next returns again "summer"', () => {
+  test('[13] the FIFTH call of seasons.next returns again "winter"', () => {
     seasons.next()
     seasons.next()
     seasons.next()
     seasons.next()
-    expect(seasons.next()).toBe('summer')
+    expect(seasons.next()).toBe('winter')
    })
   // test('[14] the 40th call of seasons.next returns "spring"', () => {})
-  test('[14] the 40th call of seasons.next returns "spring"', () => {
+  test('[14] the 40th call of seasons.next returns "fall"', () => {
     for(let i = 0; i < 39; i++){seasons.next()}
-    expect(seasons.next()).toBe('spring')
+    expect(seasons.next()).toBe('fall')
   })
 })
 
@@ -129,9 +135,31 @@ describe('[Exercise 6] Car', () => {
     focus = new utils.Car('focus', 20, 30) // each test must start with a fresh car
   })
   // test('[15] driving the car returns the updated odometer', () => {})
+  test('[15] driving the car returns the updated odometer', () => { focus.drive(150)
+    expect(focus.drive(100)).toBe(250)
+
+  })
   // test('[16] driving the car uses gas', () => {})
+  test('[16] driving the car uses gas', () => {
+    focus.drive(600)
+    expect(focus.tank).toBe(0)
+   })
   // test('[17] refueling allows to keep driving', () => {})
+  test('[17] refueling allows to keep driving', () => {
+    focus.drive(300)
+    expect(focus.tank).toBe(10)
+    focus.refuel(5)
+    expect(focus.tank).toBe(15)
+    focus.drive(300)
+    expect(focus.tank).toBe(5)
+  })
   // test('[18] adding fuel to a full tank has no effect', () => {})
+  test('[18] adding fuel to a full tank has no effect', () => {
+    focus.drive(300)
+    expect(focus.tank).toBe(10)
+    focus.refuel(150)
+    expect(focus.tank).toBe(20)
+  })
 })
 
 
@@ -141,5 +169,13 @@ describe('[Exercise 6] Car', () => {
 
 describe('[Exercise 7] isEvenNumberAsync', () => {
   // test('[19] resolves true if passed an even number', () => {})
+  test('[19] resolves true if passed an even number', async () => {
+    let result = await utils.isEvenNumberAsync(4)
+    expect(result).toBe(true)
+      })
   // test('[20] resolves false if passed an odd number', () => {})
+  test('[20] resolves false if passed an odd number', async () => {
+    let number = await utils.isEvenNumberAsync(5)
+    expect(number).toBe(false)
+  })
 })
