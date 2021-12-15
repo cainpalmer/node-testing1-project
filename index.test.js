@@ -24,6 +24,15 @@ describe('[Exercise 1] trimProperties', () => {
 describe('[Exercise 2] trimPropertiesMutation', () => {
   // test('[3] returns an object with the properties trimmed', () => {})
   // test('[4] the object returned is the exact same one we passed in', () => {})
+  const input = {name:'james'}
+  const expected = {name:'james'}
+  test('[3] returns an object with the properties trimmed', () => {
+
+    expect(utils.trimPropertiesMutation(input)).toEqual(expected)
+  })
+  test('[4] the object returned is the exact same one we passed in', () => {
+    expect(utils.trimPropertiesMutation(input)).toEqual(expected)
+  })
 })
 
 
